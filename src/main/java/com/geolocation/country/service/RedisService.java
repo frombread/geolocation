@@ -1,5 +1,7 @@
 package com.geolocation.country.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,10 +25,10 @@ public class RedisService {
   }
   public String getCountriesInRangeByScore(long minScore) {
     System.out.println(minScore);
-//    long max_score = ipToLong("255.255.255.255");
-    Set<String> countries = zSetOperations.reverseRangeByScore("countries",-1 , minScore,0,2);
-    System.out.println(countries);
-    return Objects.requireNonNull(countries).isEmpty() ? null : countries.iterator().next();
+    Set<String> countries = zSetOperations.reverseRangeByScore("countries",-1 , minScore,0,1);
+    String ipInfoString = Objects.requireNonNull(countries,"countries must not be null").iterator().next();
+    String[] ipInfoStringList = ipInfoString.split(",");
+    return ipInfoStringList[2];
 
   }
   public long ipToLong(String ipAddress) {
