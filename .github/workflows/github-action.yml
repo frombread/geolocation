@@ -1,0 +1,26 @@
+name: test CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: "11"
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Deploy to EC2
+        run: |
+          scp -i ${{ secrets.SSH_PRIVATE_KEY }} ./country/build/libs/your-app.jar ubuntu@3.35.16.122:/home/ubuntu/deploy
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

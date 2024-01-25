@@ -36,16 +36,16 @@ public class SeedDataLoader implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    scheduledTask();
+    addCountryData();
   }
 
   @Scheduled(cron = "0 0 0 1/1 * ?")
-  public void scheduledTask() throws Exception {
+  public void addCountryData() throws Exception {
     try {
       Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection().flushDb();
-      File gzippedFile = downloadAndExtractFile();
+      File file = downloadAndExtractFile();
 
-      try (BufferedReader br = new BufferedReader(new FileReader(gzippedFile))) {
+      try (BufferedReader br = new BufferedReader(new FileReader(file))) {
         br.readLine();
         String line;
         while ((line = br.readLine()) != null) {
@@ -81,19 +81,19 @@ public class SeedDataLoader implements CommandLineRunner {
       String fileUrl = "https://ipinfo.io/data/free/country.csv.gz?token=2c99cfcf976dce";
 
       // 파일을 다운로드 받아 임시 디렉토리에 저장
-      Path tempGzFile = Files.createTempFile("location", ".csv.gz");
+      Path tempFile = Files.createTempFile("location", ".csv.gz");
       URL url = new URL(fileUrl);
 
       try (InputStream in = url.openStream()) {
-        Files.copy(in, tempGzFile, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(in, tempFile, StandardCopyOption.REPLACE_EXISTING);
       }
 
       // 압축 파일 해제
-      Path tempCsvFile = Files.createTempFile("location", ".csv");
-      extractGzip(tempGzFile, tempCsvFile);
+      Path csvFile = Files.createTempFile("location", ".csv");
+      extractGzip(tempFile, csvFile);
 
       // 반환할 파일은 압축 해제된 CSV 파일
-      return tempCsvFile.toFile();
+      return csvFile.toFile();
     }
 
     private void extractGzip (Path source, Path destination) throws IOException {
