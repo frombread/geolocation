@@ -22,7 +22,7 @@ jobs:
       - name: Deploy to EC2
         run: |
           echo "$SSH_PRIVATE_KEY" >> $HOME/key.pem
-          pwd
+          cd build/libs
           ls
           chmod 400 $HOME/key.pem
           scp -i $HOME/key.pem -o StrictHostKeyChecking=no ./build/libs/country-0.0.1-SNAPSHOT.jar ubuntu@3.35.16.122:/home/ubuntu
