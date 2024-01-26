@@ -70,7 +70,7 @@ public class SeedDataLoader implements CommandLineRunner {
       } catch (IOException e) {
         e.printStackTrace();
       } finally {
-        System.err.println("저장 끝");
+        System.err.println("저장 끝_test");
       }
     } catch (Exception e) {
       e.printStackTrace();
