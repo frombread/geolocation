@@ -21,6 +21,6 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          scp -i ${{ secrets.SSH_PRIVATE_KEY }} StrictHostKeyChecking=no ./country/build/libs/country-0.0.1-SNAPSHOT.jar ubuntu@3.35.16.122:/home/ubuntu
+          scp -i ${{ secrets.SSH_PRIVATE_KEY }} StrictHostKeyChecking=no ./build/libs/country-0.0.1-SNAPSHOT.jar ubuntu@3.35.16.122:/home/ubuntu
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
