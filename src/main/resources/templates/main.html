@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IP 주소로 국가 찾기</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>IP 주소로 국가 찾기</h1>
+<input type="text" id="ipAddress" placeholder="IP 주소 입력">
+<button id="findButton">찾기</button>
+<h2 id="result"></h2>
+
+<script>
+  $(document).ready(function() {
+    $('#findButton').click(function() {
+      var ipAddress = $('#ipAddress').val();
+      $.get("/find/" + ipAddress, function(data) {
+        $('#result').text(data);
+      });
+    });
+  });
+</script>
+</body>
+</html>
