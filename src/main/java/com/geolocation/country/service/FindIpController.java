@@ -16,10 +16,10 @@ public class FindIpController {
     this.redisService = redisService;
   }
 
-  @GetMapping("/find/{key}")
-  public String findIp(@PathVariable String key) {
-    System.out.println(key);
-    long LongKey = redisService.ipToLong(key);
+  @GetMapping("/find/{ip}")
+  public String findIp(@PathVariable String ip) {
+    System.out.println(ip);
+    long LongKey = redisService.ipToLong(ip);
     return redisService.getCountriesInRangeByScore(LongKey);
   }
 }
