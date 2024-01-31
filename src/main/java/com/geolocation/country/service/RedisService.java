@@ -28,7 +28,7 @@ public class RedisService {
     Set<String> countries = zSetOperations.reverseRangeByScore("countries",-1 , minScore,0,1);
     String ipInfoString = Objects.requireNonNull(countries,"countries must not be null").iterator().next();
     String[] ipInfoStringList = ipInfoString.split(",");
-    return ipInfoStringList[2];
+    return ipInfoStringList[3];
 
   }
   public long ipToLong(String ipAddress) {

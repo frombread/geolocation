@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>IP 주소로 국가 찾기</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+      font-family: '나눔고딕', Arial, sans-serif;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    #ipAddress, #findButton {
+      margin: 1em;
+    }
+    #findButton {
+      cursor: pointer;
+      padding: 0.5em 1em;
+    }
+    #result {
+      color: #007bff;
+    }
+  </style>
 </head>
 <body>
-<h1>IP 주소로 국가 찾기</h1>
-<input type="text" id="ipAddress" placeholder="IP 주소 입력">
-<button id="findButton">찾기</button>
-<h2 id="result"></h2>
+<div>
+  <h1>IP 주소로 국가 찾기</h1>
+  <input type="text" id="ipAddress" placeholder="IP 주소 입력">
+  <button id="findButton">찾기</button>
+  <h2 id="result"></h2>
+</div>
 
 <script>
   $(document).ready(function() {
