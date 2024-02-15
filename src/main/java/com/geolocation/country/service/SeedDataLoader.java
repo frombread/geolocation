@@ -36,7 +36,7 @@ public class SeedDataLoader implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-//    addCountryData();
+    addCountryData();
   }
 
   @Scheduled(cron = "0 0 0 1/1 * ?")
