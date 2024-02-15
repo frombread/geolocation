@@ -5,7 +5,7 @@
 # 접속방법
 
 ```java
-3.35.16.122:8080으로 접속
+3.35.16.122으로 접속
 ```
 
 # **직접 실행 방법**
@@ -29,13 +29,13 @@ java -jar ./build/libs/country-0.0.1-SNAPSHOT.jar
 ```
 
 ```bash
-http://localhost:8080으로 접속
+http://localhost으로 접속
 ```
 
 # 다른 프론트와의 연동
 
 ```java
-- Endpoint : "3.35.16.122:8080/find/{ip}"
+- Endpoint : "3.35.16.122/find/{ip}"
 - Method: "GET"
 - Response: "String" (특정 Ip 주소에 해당하는 나라 이름 반환)
 
