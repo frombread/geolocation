@@ -1,4 +1,4 @@
-name: test CI/CD
+name: Find IP
 
 on:
   push:
@@ -18,6 +18,11 @@ jobs:
           java-version: "11"
       - name: Build with Gradle
         run: ./gradlew clean bootJar
+
+      - name: Restart Redis Docker Container
+        run: |
+          sudo docker stop $(sudo docker ps -aq --filter ancestor=redis)
+          sudo docker run -p 6379:6379 -d redis sleep infinity
 
       - name: Deploy to EC2
         run: |
