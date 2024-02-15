@@ -21,7 +21,10 @@ jobs:
 
       - name: Restart Redis Docker Container
         run: |
-          sudo docker stop $(sudo docker ps -aq --filter ancestor=redis)
+          CONTAINER_ID=$(sudo docker ps -q --filter ancestor=redis)
+          if [ ! -z "$CONTAINER_ID" ]; then
+          sudo docker stop "$CONTAINER_ID"
+          fi
           sudo docker run -p 6379:6379 -d redis sleep infinity
 
       - name: Deploy to EC2
