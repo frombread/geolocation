@@ -1,8 +1,4 @@
 package com.geolocation.country.service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -26,11 +22,14 @@ public class RedisService {
   public String getCountriesInRangeByScore(long minScore) {
     System.out.println(minScore);
     Set<String> countries = zSetOperations.reverseRangeByScore("countries",-1 , minScore,0,1);
-    String ipInfoString = Objects.requireNonNull(countries,"countries must not be null").iterator().next();
+    if (countries == null || countries.isEmpty()) {
+      return "잘못된 IP 주소입니다";
+    }
+    String ipInfoString = countries.iterator().next();
     String[] ipInfoStringList = ipInfoString.split(",");
     return ipInfoStringList[3];
-
   }
+
   public long ipToLong(String ipAddress) {
     String[] ipAddressInArray = ipAddress.split("\\.");
     long result = 0;
