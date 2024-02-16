@@ -27,7 +27,7 @@ java -jar ./build/libs/country-0.0.1-SNAPSHOT.jar
 ```
 
 ```bash
-http://localhost으로 접속
+http://localhost:8080으로 접속
 ```
 
 # 다른 프론트와의 연동
