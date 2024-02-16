@@ -23,8 +23,8 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" >> $HOME/key.pem
           chmod 400 $HOME/key.pem
-          scp -i $HOME/key.pem -o StrictHostKeyChecking=no ./build/libs/country-0.0.1-SNAPSHOT.jar ubuntu@3.35.16.122:/home/ubuntu
-          ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ubuntu@3.35.16.122 './start.sh'
+          scp -i $HOME/key.pem -o StrictHostKeyChecking=no ./build/libs/country-0.0.1-SNAPSHOT.jar ubuntu@13.124.160.146:/home/ubuntu
+          ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ubuntu@13.124.160.146 './start.sh'
 
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
